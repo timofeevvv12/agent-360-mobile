@@ -50,7 +50,8 @@ class ApiCallResponse {
   ) {
     var jsonBody;
     try {
-      jsonBody = returnBody ? json.decode(response.body) : null;
+      jsonBody =
+          returnBody ? json.decode(utf8.decode(response.bodyBytes)) : null;
     } catch (_) {}
     return ApiCallResponse(jsonBody, response.headers, response.statusCode);
   }
