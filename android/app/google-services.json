@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "935438850635",
+    "project_id": "agent360-io",
+    "storage_bucket": "agent360-io.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:935438850635:android:cc2d638d782f953fc10bce",
+        "android_client_info": {
+          "package_name": "com.mycompany.agent360"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "935438850635-hqlso3raqrt7sl9vgpfhr849lftvrbmb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.agent360",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "935438850635-vqg6pk4qs2uimr3nccpf1a5t46u9ogpd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtF0mheRtxVWo8jNBwl7PlOpyTeZAODb4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "935438850635-vqg6pk4qs2uimr3nccpf1a5t46u9ogpd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "935438850635-oifpq8sg3ggha01r383pt67i4csoq2cp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.agent360"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
