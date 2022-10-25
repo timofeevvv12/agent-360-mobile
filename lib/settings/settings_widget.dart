@@ -92,7 +92,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                   child: SwitchListTile.adaptive(
-                    value: switchListTileValue2 ??= false,
+                    value: switchListTileValue2 ??= true,
                     onChanged: (newValue) async {
                       setState(() => switchListTileValue2 = newValue);
                     },
