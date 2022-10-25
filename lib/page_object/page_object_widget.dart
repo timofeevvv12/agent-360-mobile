@@ -287,38 +287,38 @@ class _PageObjectWidgetState extends State<PageObjectWidget> {
                                                                   ],
                                                                 ),
                                                               ),
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0,
-                                                                            6,
-                                                                            0,
-                                                                            0),
-                                                                child: Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  children: [
-                                                                    Expanded(
-                                                                      child:
-                                                                          Text(
-                                                                        'Создано: ${getJsonField(
-                                                                          sceneItem,
-                                                                          r'''$["Created By"]''',
-                                                                        ).toString()}',
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyText2
-                                                                            .override(
-                                                                              fontFamily: 'Inter',
-                                                                              fontSize: 12,
-                                                                              useGoogleFonts: false,
-                                                                            ),
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ),
+                                                              // Padding(
+                                                              //   padding:
+                                                              //       EdgeInsetsDirectional
+                                                              //           .fromSTEB(
+                                                              //               0,
+                                                              //               6,
+                                                              //               0,
+                                                              //               0),
+                                                              //   child: Row(
+                                                              //     mainAxisSize:
+                                                              //         MainAxisSize
+                                                              //             .max,
+                                                              //     children: [
+                                                              //       Expanded(
+                                                              //         child:
+                                                              //             Text(
+                                                              //           'Создано: ${getJsonField(
+                                                              //             sceneItem,
+                                                              //             r'''$["Created By"]''',
+                                                              //           ).toString()}',
+                                                              //           style: FlutterFlowTheme.of(context)
+                                                              //               .bodyText2
+                                                              //               .override(
+                                                              //                 fontFamily: 'Inter',
+                                                              //                 fontSize: 12,
+                                                              //                 useGoogleFonts: false,
+                                                              //               ),
+                                                              //         ),
+                                                              //       ),
+                                                              //     ],
+                                                              //   ),
+                                                              // ),
                                                             ],
                                                           ),
                                                         ],
