@@ -77,7 +77,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                   child: SwitchListTile.adaptive(
                     value: switchListTileValue1 ??= false,
                     onChanged: (newValue) async {
-                      setState(() => switchListTileValue1 = newValue!);
+                      setState(() => switchListTileValue1 = newValue);
                     },
                     title: Text(
                       FFLocalizations.of(context).getText(
@@ -94,7 +94,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                   child: SwitchListTile.adaptive(
                     value: switchListTileValue2 ??= false,
                     onChanged: (newValue) async {
-                      setState(() => switchListTileValue2 = newValue!);
+                      setState(() => switchListTileValue2 = newValue);
                     },
                     title: Text(
                       FFLocalizations.of(context).getText(
