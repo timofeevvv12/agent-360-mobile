@@ -122,6 +122,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'faqScreen',
               path: 'faqScreen',
               builder: (context, params) => FaqScreenWidget(),
+            ),
+            FFRoute(
+              name: 'test',
+              path: 'test',
+              builder: (context, params) => TestWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

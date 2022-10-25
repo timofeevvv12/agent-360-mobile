@@ -7,3 +7,4 @@ export 'page_object/page_object_widget.dart' show PageObjectWidget;
 export 'create_scene/create_scene_widget.dart' show CreateSceneWidget;
 export 'settings/settings_widget.dart' show SettingsWidget;
 export 'faq_screen/faq_screen_widget.dart' show FaqScreenWidget;
+export 'test/test_widget.dart' show TestWidget;

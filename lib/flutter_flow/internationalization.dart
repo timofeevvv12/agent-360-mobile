@@ -333,6 +333,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Home',
     },
   },
+  // test
+  {
+    'dev2jqws': {
+      'ru': 'Page Title',
+      'en': '',
+    },
+    'j71ys2el': {
+      'ru': 'Home',
+      'en': '',
+    },
+  },
   // Miscellaneous
   {
     'xr3f8cwh': {
