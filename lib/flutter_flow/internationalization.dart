@@ -49,45 +49,6 @@ Locale createLocale(String language) => language.contains('_')
     : Locale(language);
 
 final kTranslationsMap = <Map<String, Map<String, String>>>[
-  // LogIn
-  {
-    '2fpofwx9': {
-      'ru': 'Login',
-      'en': 'Login',
-    },
-    'uw1c1w2n': {
-      'ru': 'Email',
-      'en': 'Email',
-    },
-    'o5rhi0a3': {
-      'ru': 'Enter email',
-      'en': 'Enter email',
-    },
-    '0gpyu396': {
-      'ru': 'Password',
-      'en': 'Password',
-    },
-    '6dhvjy86': {
-      'ru': 'Enter password',
-      'en': 'Enter password',
-    },
-    '4sasrbum': {
-      'ru': 'Login',
-      'en': 'Login',
-    },
-    'c7zxko7n': {
-      'ru': 'Don\'t have an account?',
-      'en': 'Don\'t have an account?',
-    },
-    't5vogcpz': {
-      'ru': ' Register',
-      'en': 'Register',
-    },
-    'or5kk52l': {
-      'ru': 'Home',
-      'en': 'Home',
-    },
-  },
   // SignUp
   {
     'j5f6aoao': {
@@ -143,6 +104,45 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Home',
     },
   },
+  // LogIn
+  {
+    '2fpofwx9': {
+      'ru': 'Login',
+      'en': 'Login',
+    },
+    'uw1c1w2n': {
+      'ru': 'Email',
+      'en': 'Email',
+    },
+    'o5rhi0a3': {
+      'ru': 'Enter email',
+      'en': 'Enter email',
+    },
+    '0gpyu396': {
+      'ru': 'Password',
+      'en': 'Password',
+    },
+    '6dhvjy86': {
+      'ru': 'Enter password',
+      'en': 'Enter password',
+    },
+    '4sasrbum': {
+      'ru': 'Login',
+      'en': 'Login',
+    },
+    'c7zxko7n': {
+      'ru': 'Don\'t have an account?',
+      'en': 'Don\'t have an account?',
+    },
+    't5vogcpz': {
+      'ru': ' Register',
+      'en': 'Register',
+    },
+    'or5kk52l': {
+      'ru': 'Home',
+      'en': 'Home',
+    },
+  },
   // Home
   {
     '9u55wg3c': {
@@ -166,27 +166,27 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Objects',
     },
     'l1qfszun': {
-      'ru': 'Меню',
+      'ru': 'Menu',
       'en': 'Menu',
     },
     'p792tdsd': {
-      'ru': 'agent360.vortexo.ru',
+      'ru': 'my.agent360.tech',
       'en': 'AGENT360.COM',
     },
     '8z80tmvu': {
-      'ru': 'Настройки',
+      'ru': 'Settings',
       'en': 'Settings',
     },
     'vpclsb96': {
-      'ru': 'FAQ & Поддержка',
+      'ru': 'Support',
       'en': 'FAQ &amp; Support',
     },
     'iht8tcx2': {
-      'ru': 'Выйти',
+      'ru': 'Exit',
       'en': 'Go out',
     },
     '3sxunb21': {
-      'ru': 'Удалить аккаунт',
+      'ru': 'Delete account',
       'en': 'Delete account',
     },
     'xde97kt8': {
@@ -331,17 +331,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'xjkrclu6': {
       'ru': 'Home',
       'en': 'Home',
-    },
-  },
-  // test
-  {
-    'dev2jqws': {
-      'ru': 'Page Title',
-      'en': '',
-    },
-    'j71ys2el': {
-      'ru': 'Home',
-      'en': '',
     },
   },
   // Miscellaneous
