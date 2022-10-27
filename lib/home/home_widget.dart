@@ -40,7 +40,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                       children: [
                         Text(
                           FFLocalizations.of(context).getText(
-                            'l1qfszun' /* Меню */,
+                            'l1qfszun' /* Menu */,
                           ),
                           style: FlutterFlowTheme.of(context).title2,
                         ),
@@ -117,7 +117,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                         },
                         child: Text(
                           FFLocalizations.of(context).getText(
-                            'p792tdsd' /* agent360.vortexo.ru */,
+                            'p792tdsd' /* my.agent360.tech */,
                           ),
                           style:
                               FlutterFlowTheme.of(context).bodyText1.override(
@@ -143,7 +143,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                     children: [
                       Text(
                         FFLocalizations.of(context).getText(
-                          '8z80tmvu' /* Настройки */,
+                          '8z80tmvu' /* Settings */,
                         ),
                         style: FlutterFlowTheme.of(context).bodyText1.override(
                               fontFamily: 'Inter',
@@ -172,7 +172,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                     children: [
                       Text(
                         FFLocalizations.of(context).getText(
-                          'vpclsb96' /* FAQ & Поддержка */,
+                          'vpclsb96' /* Support */,
                         ),
                         style: FlutterFlowTheme.of(context).bodyText1.override(
                               fontFamily: 'Inter',
@@ -201,18 +201,22 @@ class _HomeWidgetState extends State<HomeWidget> {
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            InkWell(
-                              onTap: () async {
-                                GoRouter.of(context).prepareAuthEvent();
-                                await signOut();
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                              child: InkWell(
+                                onTap: () async {
+                                  GoRouter.of(context).prepareAuthEvent();
+                                  await signOut();
 
-                                context.goNamedAuth('LogIn', mounted);
-                              },
-                              child: Text(
-                                FFLocalizations.of(context).getText(
-                                  'iht8tcx2' /* Выйти */,
+                                  context.goNamedAuth('LogIn', mounted);
+                                },
+                                child: Text(
+                                  FFLocalizations.of(context).getText(
+                                    'iht8tcx2' /* Exit */,
+                                  ),
+                                  style: FlutterFlowTheme.of(context).bodyText1,
                                 ),
-                                style: FlutterFlowTheme.of(context).bodyText1,
                               ),
                             ),
                           ],
@@ -225,7 +229,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                           children: [
                             Text(
                               FFLocalizations.of(context).getText(
-                                '3sxunb21' /* Удалить аккаунт */,
+                                '3sxunb21' /* Delete account */,
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyText1

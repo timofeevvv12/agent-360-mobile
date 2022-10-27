@@ -59,22 +59,26 @@ class _SignUpWidgetState extends State<SignUpWidget> {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            FFLocalizations.of(context).getText(
-                              'j5f6aoao' /* Registration */,
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 30),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              FFLocalizations.of(context).getText(
+                                'j5f6aoao' /* Registration */,
+                              ),
+                              style: FlutterFlowTheme.of(context).title1,
                             ),
-                            style: FlutterFlowTheme.of(context).title1,
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 40),

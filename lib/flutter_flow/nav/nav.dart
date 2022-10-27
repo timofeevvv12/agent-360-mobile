@@ -77,14 +77,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               appStateNotifier.loggedIn ? HomeWidget() : LogInWidget(),
           routes: [
             FFRoute(
-              name: 'LogIn',
-              path: 'logIn',
-              builder: (context, params) => LogInWidget(),
-            ),
-            FFRoute(
               name: 'SignUp',
               path: 'signUp',
               builder: (context, params) => SignUpWidget(),
+            ),
+            FFRoute(
+              name: 'LogIn',
+              path: 'logIn',
+              builder: (context, params) => LogInWidget(),
             ),
             FFRoute(
               name: 'Home',
@@ -122,11 +122,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'faqScreen',
               path: 'faqScreen',
               builder: (context, params) => FaqScreenWidget(),
-            ),
-            FFRoute(
-              name: 'test',
-              path: 'test',
-              builder: (context, params) => TestWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

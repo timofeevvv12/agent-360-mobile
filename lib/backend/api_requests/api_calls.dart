@@ -12,7 +12,7 @@ class GetObjectsCall {
   }) {
     return ApiManager.instance.makeApiCall(
       callName: 'getObjects',
-      apiUrl: 'https://agent360.bubbleapps.io/version-test/api/1.1/obj/Object',
+      apiUrl: 'https://agent360.bubbleapps.io/api/1.1/obj/Object',
       callType: ApiCallType.GET,
       headers: {
         'content-type': 'application/json',
@@ -43,7 +43,7 @@ class GetScenesCall {
   }) {
     return ApiManager.instance.makeApiCall(
       callName: 'getScenes',
-      apiUrl: 'https://agent360.bubbleapps.io/version-test/api/1.1/obj/Scene',
+      apiUrl: 'https://agent360.bubbleapps.io/api/1.1/obj/Scene',
       callType: ApiCallType.GET,
       headers: {
         'content-type': 'application/json; charset=UTF-8',
@@ -70,7 +70,7 @@ class AuthCall {
   }) {
     return ApiManager.instance.makeApiCall(
       callName: 'auth',
-      apiUrl: 'https://agent360.vortexo.ru/version-test/api/1.1/wf/auth',
+      apiUrl: 'https://agent360.vortexo.ru/api/1.1/wf/auth',
       callType: ApiCallType.GET,
       headers: {},
       params: {
@@ -95,14 +95,15 @@ class LoginCall {
   }) {
     return ApiManager.instance.makeApiCall(
       callName: 'login',
-      apiUrl: 'https://agent360.vortexo.ru/version-test/api/1.1/wf/login',
-      callType: ApiCallType.GET,
+      apiUrl:
+          'https://agent360.bubbleapps.io/api/1.1/wf/login?api_token=1a14a379433e808a8135d044c224a56b',
+      callType: ApiCallType.POST,
       headers: {},
       params: {
         'email': email,
         'password': password,
-        'api_token': "1a14a379433e808a8135d044c224a56b",
       },
+      bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
       returnBody: true,
     );
   }
@@ -124,7 +125,7 @@ class CreateObjectCall {
     return ApiManager.instance.makeApiCall(
       callName: 'createObject',
       apiUrl:
-          'https://agent360.bubbleapps.io/version-test/api/1.1/obj/Object?api_token=1a14a379433e808a8135d044c224a56b',
+          'https://agent360.bubbleapps.io/api/1.1/obj/Object?api_token=1a14a379433e808a8135d044c224a56b',
       callType: ApiCallType.POST,
       headers: {},
       params: {
@@ -150,7 +151,7 @@ class CreateSceneCall {
     return ApiManager.instance.makeApiCall(
       callName: 'createScene',
       apiUrl:
-          'https://agent360.bubbleapps.io/version-test/api/1.1/obj/Scene?api_token=1a14a379433e808a8135d044c224a56b',
+          'https://agent360.bubbleapps.io/api/1.1/obj/Scene?api_token=1a14a379433e808a8135d044c224a56b',
       callType: ApiCallType.POST,
       headers: {},
       params: {
@@ -173,7 +174,7 @@ class AddObjectByCompanyCall {
     return ApiManager.instance.makeApiCall(
       callName: 'addObjectByCompany',
       apiUrl:
-          'https://agent360.bubbleapps.io/version-test/api/1.1/wf/object_to_company?api_token=1a14a379433e808a8135d044c224a56b',
+          'https://agent360.bubbleapps.io/api/1.1/wf/object_to_company?api_token=1a14a379433e808a8135d044c224a56b',
       callType: ApiCallType.POST,
       headers: {},
       params: {
@@ -194,7 +195,7 @@ class AddSceneToObjectCall {
     return ApiManager.instance.makeApiCall(
       callName: 'addSceneToObject',
       apiUrl:
-          'https://agent360.bubbleapps.io/version-test/api/1.1/wf/scene_to_object?api_token=1a14a379433e808a8135d044c224a56b',
+          'https://agent360.bubbleapps.io/api/1.1/wf/scene_to_object?api_token=1a14a379433e808a8135d044c224a56b',
       callType: ApiCallType.POST,
       headers: {},
       params: {
@@ -216,7 +217,7 @@ class RegisterCall {
     return ApiManager.instance.makeApiCall(
       callName: 'register',
       apiUrl:
-          'https://agent360.bubbleapps.io/version-test/api/1.1/wf/register?api_token=1a14a379433e808a8135d044c224a56b',
+          'https://agent360.bubbleapps.io/api/1.1/wf/register?api_token=1a14a379433e808a8135d044c224a56b',
       callType: ApiCallType.POST,
       headers: {},
       params: {
