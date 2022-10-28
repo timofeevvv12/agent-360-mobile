@@ -227,18 +227,44 @@ class _HomeWidgetState extends State<HomeWidget> {
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Text(
-                              FFLocalizations.of(context).getText(
-                                '3sxunb21' /* Delete account */,
+                            InkWell(
+                              onTap: () async {
+                                await showDialog(
+                                  context: context,
+                                  builder: (alertDialogContext) {
+                                    return AlertDialog(
+                                      title:
+                                          Text('Thank you for contacting us'),
+                                      content: Text(
+                                          'We are very sorry that you have decided to delete your account. We have accepted your application for processing.'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: Text('Ok'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                                GoRouter.of(context).prepareAuthEvent();
+                                await signOut();
+
+                                context.goNamedAuth('LogIn', mounted);
+                              },
+                              child: Text(
+                                FFLocalizations.of(context).getText(
+                                  '3sxunb21' /* Delete account */,
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Inter',
+                                      color: Color(0xFFA8A8A8),
+                                      fontSize: 14,
+                                      useGoogleFonts: false,
+                                    ),
                               ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                    fontFamily: 'Inter',
-                                    color: Color(0xFFA8A8A8),
-                                    fontSize: 14,
-                                    useGoogleFonts: false,
-                                  ),
                             ),
                           ],
                         ),

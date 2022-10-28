@@ -87,6 +87,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ru': 'Repeat password',
       'en': 'Enter password',
     },
+    'xmtihr4m': {
+      'ru': 'By continuing, you agree to the privacy Policy',
+      'en': '',
+    },
     '9mbdk2pt': {
       'ru': 'Register',
       'en': 'Register',

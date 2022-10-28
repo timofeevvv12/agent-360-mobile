@@ -23,6 +23,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
   TextEditingController? textController4;
 
   late bool passwordVisibility2;
+  bool? checkboxValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -487,6 +488,50 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                           ],
                         ),
                       ),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Theme(
+                            data: ThemeData(
+                              checkboxTheme: CheckboxThemeData(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(0),
+                                ),
+                              ),
+                              unselectedWidgetColor: Color(0xFFF5F5F5),
+                            ),
+                            child: Checkbox(
+                              value: checkboxValue ??= true,
+                              onChanged: (newValue) async {
+                                setState(() => checkboxValue = newValue!);
+                              },
+                              activeColor:
+                                  FlutterFlowTheme.of(context).blueMain,
+                            ),
+                          ),
+                          Expanded(
+                            child: InkWell(
+                              onTap: () async {
+                                await launchURL(
+                                    'https://iflex.ru/documents/goshoping/PrivacyPolicy.html');
+                              },
+                              child: Text(
+                                'By continuing, you agree to the privacy Policy',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Inter',
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      fontSize: 12,
+                                      decoration: TextDecoration.underline,
+                                      useGoogleFonts: false,
+                                    ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
@@ -501,36 +546,62 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                           Expanded(
                             child: FFButtonWidget(
                               onPressed: () async {
-                                apiResultpa4 = await RegisterCall.call(
-                                  name: textController1!.text,
-                                  email: textController2!.text,
-                                  password: textController3!.text,
-                                );
-                                if ((apiResultpa4?.succeeded ?? true)) {
-                                  GoRouter.of(context).prepareAuthEvent();
-                                  final user = await signInAnonymously(context);
-                                  if (user == null) {
-                                    return;
-                                  }
-                                  setState(() => FFAppState().id = getJsonField(
-                                        (apiResultpa4?.jsonBody ?? ''),
-                                        r'''$.id''',
-                                      ).toString());
-                                  setState(
-                                      () => FFAppState().name = getJsonField(
-                                            (apiResultpa4?.jsonBody ?? ''),
-                                            r'''$.name''',
-                                          ).toString());
-                                  setState(
-                                      () => FFAppState().email = getJsonField(
-                                            (apiResultpa4?.jsonBody ?? ''),
-                                            r'''$.email''',
-                                          ).toString());
+                                var _shouldSetState = false;
+                                if (checkboxValue!) {
+                                  apiResultpa4 = await RegisterCall.call(
+                                    name: textController1!.text,
+                                    email: textController2!.text,
+                                    password: textController3!.text,
+                                  );
+                                  _shouldSetState = true;
+                                  if ((apiResultpa4?.succeeded ?? true)) {
+                                    GoRouter.of(context).prepareAuthEvent();
+                                    final user =
+                                        await signInAnonymously(context);
+                                    if (user == null) {
+                                      return;
+                                    }
+                                    setState(
+                                        () => FFAppState().id = getJsonField(
+                                              (apiResultpa4?.jsonBody ?? ''),
+                                              r'''$.id''',
+                                            ).toString());
+                                    setState(
+                                        () => FFAppState().name = getJsonField(
+                                              (apiResultpa4?.jsonBody ?? ''),
+                                              r'''$.name''',
+                                            ).toString());
+                                    setState(
+                                        () => FFAppState().email = getJsonField(
+                                              (apiResultpa4?.jsonBody ?? ''),
+                                              r'''$.email''',
+                                            ).toString());
 
-                                  context.goNamedAuth('Home', mounted);
+                                    context.goNamedAuth('Home', mounted);
+                                  }
+                                } else {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: Text('Warning'),
+                                        content: Text(
+                                            'You have not accepted the privacy Policy'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: Text('Ok'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                  if (_shouldSetState) setState(() {});
+                                  return;
                                 }
 
-                                setState(() {});
+                                if (_shouldSetState) setState(() {});
                               },
                               text: FFLocalizations.of(context).getText(
                                 '9mbdk2pt' /* Register */,
