@@ -1,11 +1,14 @@
-import '../backend/backend.dart';
-import '../flutter_flow/flutter_flow_icon_button.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
+import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'faq_screen_model.dart';
+export 'faq_screen_model.dart';
 
 class FaqScreenWidget extends StatefulWidget {
   const FaqScreenWidget({Key? key}) : super(key: key);
@@ -15,50 +18,69 @@ class FaqScreenWidget extends StatefulWidget {
 }
 
 class _FaqScreenWidgetState extends State<FaqScreenWidget> {
+  late FaqScreenModel _model;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    _model = createModel(context, () => FaqScreenModel());
+  }
+
+  @override
+  void dispose() {
+    _model.dispose();
+
+    _unfocusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        automaticallyImplyLeading: false,
-        leading: FlutterFlowIconButton(
-          borderColor: Colors.transparent,
-          borderRadius: 30,
-          borderWidth: 1,
-          buttonSize: 54,
-          icon: Icon(
-            Icons.close,
-            color: FlutterFlowTheme.of(context).primaryText,
-            size: 24,
+    context.watch<FFAppState>();
+
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+      child: Scaffold(
+        key: scaffoldKey,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          automaticallyImplyLeading: false,
+          leading: FlutterFlowIconButton(
+            borderColor: Colors.transparent,
+            borderRadius: 30.0,
+            borderWidth: 1.0,
+            buttonSize: 54.0,
+            icon: Icon(
+              Icons.close,
+              color: FlutterFlowTheme.of(context).primaryText,
+              size: 24.0,
+            ),
+            onPressed: () async {
+              context.pop();
+            },
           ),
-          onPressed: () async {
-            context.pop();
-          },
-        ),
-        title: Text(
-          FFLocalizations.of(context).getText(
-            'ege3phte' /* Support */,
+          title: Text(
+            FFLocalizations.of(context).getText(
+              'ege3phte' /* Support */,
+            ),
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
+                  fontFamily: 'Inter',
+                  color: FlutterFlowTheme.of(context).primaryText,
+                  fontSize: 22.0,
+                  useGoogleFonts: false,
+                ),
           ),
-          style: FlutterFlowTheme.of(context).title2.override(
-                fontFamily: 'Inter',
-                color: FlutterFlowTheme.of(context).primaryText,
-                fontSize: 22,
-                useGoogleFonts: false,
-              ),
+          actions: [],
+          centerTitle: true,
+          elevation: 0.0,
         ),
-        actions: [],
-        centerTitle: true,
-        elevation: 0,
-      ),
-      body: SafeArea(
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
+        body: SafeArea(
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(24, 24, 24, 24),
+            padding: EdgeInsetsDirectional.fromSTEB(24.0, 24.0, 24.0, 24.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -69,13 +91,14 @@ class _FaqScreenWidgetState extends State<FaqScreenWidget> {
                       FFLocalizations.of(context).getText(
                         'rgwxq9w5' /* FAQ */,
                       ),
-                      style: FlutterFlowTheme.of(context).subtitle1,
+                      style: FlutterFlowTheme.of(context).titleMedium,
                     ),
                   ],
                 ),
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                     child: StreamBuilder<List<FaqRecord>>(
                       stream: queryFaqRecord(),
                       builder: (context, snapshot) {
@@ -83,11 +106,10 @@ class _FaqScreenWidgetState extends State<FaqScreenWidget> {
                         if (!snapshot.hasData) {
                           return Center(
                             child: SizedBox(
-                              width: 24,
-                              height: 24,
+                              width: 24.0,
+                              height: 24.0,
                               child: CircularProgressIndicator(
-                                color:
-                                    FlutterFlowTheme.of(context).primaryColor,
+                                color: FlutterFlowTheme.of(context).primary,
                               ),
                             ),
                           );
@@ -113,7 +135,7 @@ class _FaqScreenWidgetState extends State<FaqScreenWidget> {
                                           header: Text(
                                             columnFaqRecord.question!,
                                             style: FlutterFlowTheme.of(context)
-                                                .subtitle1
+                                                .titleMedium
                                                 .override(
                                                   fontFamily: 'Inter',
                                                   fontWeight: FontWeight.w500,
@@ -130,10 +152,10 @@ class _FaqScreenWidgetState extends State<FaqScreenWidget> {
                                                 ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
-                                                        .bodyText1
+                                                        .bodyMedium
                                                         .override(
                                                           fontFamily: 'Inter',
-                                                          fontSize: 1,
+                                                          fontSize: 1.0,
                                                           useGoogleFonts: false,
                                                         ),
                                               ),
@@ -146,7 +168,7 @@ class _FaqScreenWidgetState extends State<FaqScreenWidget> {
                                                 columnFaqRecord.answer!,
                                                 style:
                                                     FlutterFlowTheme.of(context)
-                                                        .bodyText2,
+                                                        .bodySmall,
                                               ),
                                             ],
                                           ),
@@ -184,17 +206,17 @@ class _FaqScreenWidgetState extends State<FaqScreenWidget> {
                     if (!snapshot.hasData) {
                       return Center(
                         child: SizedBox(
-                          width: 24,
-                          height: 24,
+                          width: 24.0,
+                          height: 24.0,
                           child: CircularProgressIndicator(
-                            color: FlutterFlowTheme.of(context).primaryColor,
+                            color: FlutterFlowTheme.of(context).primary,
                           ),
                         ),
                       );
                     }
                     List<ContactRecord> columnContactRecordList =
                         snapshot.data!;
-                    // Return an empty Container when the document does not exist.
+                    // Return an empty Container when the item does not exist.
                     if (snapshot.data!.isEmpty) {
                       return Container();
                     }
@@ -217,11 +239,15 @@ class _FaqScreenWidgetState extends State<FaqScreenWidget> {
                                   'a764ebj8' /* Send to Telegram */,
                                 ),
                                 options: FFButtonOptions(
-                                  width: 130,
-                                  height: 49,
+                                  width: 130.0,
+                                  height: 49.0,
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
                                   color: Colors.white,
                                   textStyle: FlutterFlowTheme.of(context)
-                                      .subtitle2
+                                      .titleSmall
                                       .override(
                                         fontFamily: 'Inter',
                                         color: FlutterFlowTheme.of(context)
@@ -229,19 +255,21 @@ class _FaqScreenWidgetState extends State<FaqScreenWidget> {
                                         fontWeight: FontWeight.normal,
                                         useGoogleFonts: false,
                                       ),
+                                  elevation: 2.0,
                                   borderSide: BorderSide(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryText,
-                                    width: 1,
+                                    width: 1.0,
                                   ),
-                                  borderRadius: BorderRadius.circular(8),
+                                  borderRadius: BorderRadius.circular(8.0),
                                 ),
                               ),
                             ),
                           ],
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 11, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 11.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -254,11 +282,15 @@ class _FaqScreenWidgetState extends State<FaqScreenWidget> {
                                     'z0a9zutu' /* Send to Whatsapp */,
                                   ),
                                   options: FFButtonOptions(
-                                    width: 130,
-                                    height: 49,
+                                    width: 130.0,
+                                    height: 49.0,
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
                                     color: Colors.white,
                                     textStyle: FlutterFlowTheme.of(context)
-                                        .subtitle2
+                                        .titleSmall
                                         .override(
                                           fontFamily: 'Inter',
                                           color: FlutterFlowTheme.of(context)
@@ -266,12 +298,13 @@ class _FaqScreenWidgetState extends State<FaqScreenWidget> {
                                           fontWeight: FontWeight.normal,
                                           useGoogleFonts: false,
                                         ),
+                                    elevation: 2.0,
                                     borderSide: BorderSide(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryText,
-                                      width: 1,
+                                      width: 1.0,
                                     ),
-                                    borderRadius: BorderRadius.circular(8),
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
                                 ),
                               ),
@@ -279,7 +312,8 @@ class _FaqScreenWidgetState extends State<FaqScreenWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 11, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 11.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -293,11 +327,15 @@ class _FaqScreenWidgetState extends State<FaqScreenWidget> {
                                     'fccqnvcc' /* Call us */,
                                   ),
                                   options: FFButtonOptions(
-                                    width: 130,
-                                    height: 49,
+                                    width: 130.0,
+                                    height: 49.0,
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
                                     color: Colors.white,
                                     textStyle: FlutterFlowTheme.of(context)
-                                        .subtitle2
+                                        .titleSmall
                                         .override(
                                           fontFamily: 'Inter',
                                           color: FlutterFlowTheme.of(context)
@@ -305,12 +343,13 @@ class _FaqScreenWidgetState extends State<FaqScreenWidget> {
                                           fontWeight: FontWeight.normal,
                                           useGoogleFonts: false,
                                         ),
+                                    elevation: 2.0,
                                     borderSide: BorderSide(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryText,
-                                      width: 1,
+                                      width: 1.0,
                                     ),
-                                    borderRadius: BorderRadius.circular(8),
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
                                 ),
                               ),

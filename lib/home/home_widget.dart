@@ -1,11 +1,14 @@
-import '../auth/auth_util.dart';
-import '../backend/api_requests/api_calls.dart';
-import '../flutter_flow/flutter_flow_icon_button.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/custom_functions.dart' as functions;
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'home_model.dart';
+export 'home_model.dart';
 
 class HomeWidget extends StatefulWidget {
   const HomeWidget({Key? key}) : super(key: key);
@@ -15,24 +18,41 @@ class HomeWidget extends StatefulWidget {
 }
 
 class _HomeWidgetState extends State<HomeWidget> {
+  late HomeModel _model;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    _model = createModel(context, () => HomeModel());
+  }
+
+  @override
+  void dispose() {
+    _model.dispose();
+
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       drawer: Container(
-        width: MediaQuery.of(context).size.width,
+        width: MediaQuery.of(context).size.width * 1.0,
         child: Drawer(
-          elevation: 16,
+          elevation: 16.0,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                 child: Stack(
-                  alignment: AlignmentDirectional(0, 0),
+                  alignment: AlignmentDirectional(0.0, 0.0),
                   children: [
                     Row(
                       mainAxisSize: MainAxisSize.max,
@@ -42,7 +62,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                           FFLocalizations.of(context).getText(
                             'l1qfszun' /* Menu */,
                           ),
-                          style: FlutterFlowTheme.of(context).title2,
+                          style: FlutterFlowTheme.of(context).headlineMedium,
                         ),
                       ],
                     ),
@@ -52,13 +72,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                       children: [
                         FlutterFlowIconButton(
                           borderColor: Colors.transparent,
-                          borderRadius: 24,
-                          borderWidth: 1,
-                          buttonSize: 48,
+                          borderRadius: 24.0,
+                          borderWidth: 1.0,
+                          buttonSize: 48.0,
                           icon: Icon(
                             Icons.close,
                             color: FlutterFlowTheme.of(context).primaryText,
-                            size: 24,
+                            size: 24.0,
                           ),
                           onPressed: () async {
                             Navigator.pop(context);
@@ -70,14 +90,14 @@ class _HomeWidgetState extends State<HomeWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 24, 16, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Expanded(
                       child: Text(
                         FFAppState().name,
-                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.normal,
                               useGoogleFonts: false,
@@ -88,14 +108,14 @@ class _HomeWidgetState extends State<HomeWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 8, 16, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Expanded(
                       child: Text(
                         FFAppState().email,
-                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.normal,
                               useGoogleFonts: false,
@@ -106,12 +126,16 @@ class _HomeWidgetState extends State<HomeWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Expanded(
                       child: InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
                         onTap: () async {
                           await launchURL('http://agent360.vortexo.ru');
                         },
@@ -120,7 +144,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                             'p792tdsd' /* my.agent360.tech */,
                           ),
                           style:
-                              FlutterFlowTheme.of(context).bodyText1.override(
+                              FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Inter',
                                     fontWeight: FontWeight.w600,
                                     useGoogleFonts: false,
@@ -132,8 +156,12 @@ class _HomeWidgetState extends State<HomeWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 36, 16, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 36.0, 16.0, 0.0),
                 child: InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
                   onTap: () async {
                     context.pushNamed('settings');
                   },
@@ -145,7 +173,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                         FFLocalizations.of(context).getText(
                           '8z80tmvu' /* Settings */,
                         ),
-                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.normal,
                               useGoogleFonts: false,
@@ -154,15 +182,19 @@ class _HomeWidgetState extends State<HomeWidget> {
                       Icon(
                         Icons.chevron_right_outlined,
                         color: Colors.black,
-                        size: 32,
+                        size: 32.0,
                       ),
                     ],
                   ),
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 8, 16, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 0.0),
                 child: InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
                   onTap: () async {
                     context.pushNamed('faqScreen');
                   },
@@ -174,7 +206,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                         FFLocalizations.of(context).getText(
                           'vpclsb96' /* Support */,
                         ),
-                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.normal,
                               useGoogleFonts: false,
@@ -183,7 +215,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                       Icon(
                         Icons.chevron_right_outlined,
                         color: Colors.black,
-                        size: 32,
+                        size: 32.0,
                       ),
                     ],
                   ),
@@ -191,23 +223,29 @@ class _HomeWidgetState extends State<HomeWidget> {
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 4.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 20.0),
                               child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
                                 onTap: () async {
                                   GoRouter.of(context).prepareAuthEvent();
-                                  await signOut();
+                                  await authManager.signOut();
+                                  GoRouter.of(context).clearRedirectLocation();
 
                                   context.goNamedAuth('LogIn', mounted);
                                 },
@@ -215,7 +253,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   FFLocalizations.of(context).getText(
                                     'iht8tcx2' /* Exit */,
                                   ),
-                                  style: FlutterFlowTheme.of(context).bodyText1,
+                                  style:
+                                      FlutterFlowTheme.of(context).bodyMedium,
                                 ),
                               ),
                             ),
@@ -223,11 +262,16 @@ class _HomeWidgetState extends State<HomeWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 64),
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 64.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
                               onTap: () async {
                                 await showDialog(
                                   context: context,
@@ -248,7 +292,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   },
                                 );
                                 GoRouter.of(context).prepareAuthEvent();
-                                await signOut();
+                                await authManager.signOut();
+                                GoRouter.of(context).clearRedirectLocation();
 
                                 context.goNamedAuth('LogIn', mounted);
                               },
@@ -257,11 +302,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   '3sxunb21' /* Delete account */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
-                                    .bodyText1
+                                    .bodyMedium
                                     .override(
                                       fontFamily: 'Inter',
                                       color: Color(0xFFA8A8A8),
-                                      fontSize: 14,
+                                      fontSize: 14.0,
                                       useGoogleFonts: false,
                                     ),
                               ),
@@ -282,13 +327,13 @@ class _HomeWidgetState extends State<HomeWidget> {
         automaticallyImplyLeading: false,
         leading: FlutterFlowIconButton(
           borderColor: Colors.transparent,
-          borderRadius: 24,
-          borderWidth: 1,
-          buttonSize: 48,
+          borderRadius: 24.0,
+          borderWidth: 1.0,
+          buttonSize: 48.0,
           icon: Icon(
             Icons.menu,
             color: FlutterFlowTheme.of(context).primaryText,
-            size: 24,
+            size: 24.0,
           ),
           onPressed: () async {
             scaffoldKey.currentState!.openDrawer();
@@ -298,20 +343,20 @@ class _HomeWidgetState extends State<HomeWidget> {
           FFLocalizations.of(context).getText(
             'j05zmx0i' /* Objects */,
           ),
-          style: FlutterFlowTheme.of(context).title2.override(
+          style: FlutterFlowTheme.of(context).headlineMedium.override(
                 fontFamily: 'Inter',
                 color: FlutterFlowTheme.of(context).primaryText,
-                fontSize: 22,
+                fontSize: 22.0,
                 useGoogleFonts: false,
               ),
         ),
         actions: [],
         centerTitle: true,
-        elevation: 0,
+        elevation: 0.0,
       ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 16),
+          padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -326,10 +371,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                     if (!snapshot.hasData) {
                       return Center(
                         child: SizedBox(
-                          width: 24,
-                          height: 24,
+                          width: 24.0,
+                          height: 24.0,
                           child: CircularProgressIndicator(
-                            color: FlutterFlowTheme.of(context).primaryColor,
+                            color: FlutterFlowTheme.of(context).primary,
                           ),
                         ),
                       );
@@ -344,14 +389,15 @@ class _HomeWidgetState extends State<HomeWidget> {
                             0)
                           Expanded(
                             child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(24, 0, 24, 16),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 0.0, 24.0, 16.0),
                               child: Builder(
                                 builder: (context) {
                                   final objectsJson =
                                       GetObjectsCall.listObjects(
-                                    columnGetObjectsResponse.jsonBody,
-                                  ).toList();
+                                            columnGetObjectsResponse.jsonBody,
+                                          )?.toList() ??
+                                          [];
                                   return SingleChildScrollView(
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -366,8 +412,17 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             Expanded(
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 0, 0, 24),
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 24.0),
                                                 child: InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
                                                   onTap: () async {
                                                     context.pushNamed(
                                                       'pageObject',
@@ -392,25 +447,28 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     );
                                                   },
                                                   child: Container(
-                                                    width: 100,
+                                                    width: 100.0,
                                                     decoration: BoxDecoration(
                                                       color: FlutterFlowTheme
                                                               .of(context)
                                                           .secondaryBackground,
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              11),
+                                                              11.0),
                                                       border: Border.all(
                                                         color:
                                                             Color(0xFF3D3D44),
-                                                        width: 1,
+                                                        width: 1.0,
                                                       ),
                                                     ),
                                                     child: Padding(
                                                       padding:
                                                           EdgeInsetsDirectional
-                                                              .fromSTEB(10, 10,
-                                                                  10, 16),
+                                                              .fromSTEB(
+                                                                  10.0,
+                                                                  10.0,
+                                                                  10.0,
+                                                                  16.0),
                                                       child: Column(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
@@ -426,12 +484,14 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                   borderRadius:
                                                                       BorderRadius
                                                                           .circular(
-                                                                              11),
+                                                                              11.0),
                                                                   child: Image
                                                                       .network(
                                                                     'https://www.mirlandshaft.ru/wp-content/uploads/2017/12/60-2.jpg',
-                                                                    width: 100,
-                                                                    height: 180,
+                                                                    width:
+                                                                        100.0,
+                                                                    height:
+                                                                        180.0,
                                                                     fit: BoxFit
                                                                         .cover,
                                                                   ),
@@ -448,10 +508,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                 padding:
                                                                     EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            0,
-                                                                            13,
-                                                                            0,
-                                                                            0),
+                                                                            0.0,
+                                                                            13.0,
+                                                                            0.0,
+                                                                            0.0),
                                                                 child: Row(
                                                                   mainAxisSize:
                                                                       MainAxisSize
@@ -465,7 +525,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                           r'''$.objectName''',
                                                                         ).toString(),
                                                                         style: FlutterFlowTheme.of(context)
-                                                                            .bodyText1,
+                                                                            .bodyMedium,
                                                                       ),
                                                                     ),
                                                                   ],
@@ -479,10 +539,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                 Padding(
                                                                   padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          0,
-                                                                          6,
-                                                                          0,
-                                                                          0),
+                                                                          0.0,
+                                                                          6.0,
+                                                                          0.0,
+                                                                          0.0),
                                                                   child: Row(
                                                                     mainAxisSize:
                                                                         MainAxisSize
@@ -496,10 +556,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                             r'''$.objectAddress''',
                                                                           ).toString(),
                                                                           style: FlutterFlowTheme.of(context)
-                                                                              .bodyText2
+                                                                              .bodySmall
                                                                               .override(
                                                                                 fontFamily: 'Inter',
-                                                                                fontSize: 12,
+                                                                                fontSize: 12.0,
                                                                                 useGoogleFonts: false,
                                                                               ),
                                                                         ),
@@ -511,10 +571,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                 padding:
                                                                     EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            0,
-                                                                            6,
-                                                                            0,
-                                                                            0),
+                                                                            0.0,
+                                                                            6.0,
+                                                                            0.0,
+                                                                            0.0),
                                                                 child: Row(
                                                                   mainAxisSize:
                                                                       MainAxisSize
@@ -528,10 +588,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                           r'''$['Created Date']''',
                                                                         ).toString())}',
                                                                         style: FlutterFlowTheme.of(context)
-                                                                            .bodyText2
+                                                                            .bodySmall
                                                                             .override(
                                                                               fontFamily: 'Inter',
-                                                                              fontSize: 12,
+                                                                              fontSize: 12.0,
                                                                               useGoogleFonts: false,
                                                                             ),
                                                                       ),
@@ -543,10 +603,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                 padding:
                                                                     EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            0,
-                                                                            6,
-                                                                            0,
-                                                                            0),
+                                                                            0.0,
+                                                                            6.0,
+                                                                            0.0,
+                                                                            0.0),
                                                                 child: Row(
                                                                   mainAxisSize:
                                                                       MainAxisSize
@@ -560,10 +620,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                           r'''$.objectCreator''',
                                                                         ).toString()}',
                                                                         style: FlutterFlowTheme.of(context)
-                                                                            .bodyText2
+                                                                            .bodySmall
                                                                             .override(
                                                                               fontFamily: 'Inter',
-                                                                              fontSize: 12,
+                                                                              fontSize: 12.0,
                                                                               useGoogleFonts: false,
                                                                             ),
                                                                       ),
@@ -595,8 +655,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                             0)
                           Expanded(
                             child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(24, 0, 24, 16),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 0.0, 24.0, 16.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -610,7 +670,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           '9u55wg3c' /* Нет объектов */,
                                         ),
                                         style: FlutterFlowTheme.of(context)
-                                            .bodyText1,
+                                            .bodyMedium,
                                       ),
                                     ],
                                   ),
@@ -638,21 +698,26 @@ class _HomeWidgetState extends State<HomeWidget> {
                           Icon(
                             Icons.star_border,
                             color: Colors.black,
-                            size: 32,
+                            size: 32.0,
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 4.0, 0.0, 0.0),
                             child: Text(
                               FFLocalizations.of(context).getText(
                                 'jufwmtth' /* Favorites */,
                               ),
                               textAlign: TextAlign.center,
-                              style: FlutterFlowTheme.of(context).bodyText2,
+                              style: FlutterFlowTheme.of(context).bodySmall,
                             ),
                           ),
                         ],
                       ),
                       InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
                         onTap: () async {
                           context.pushNamed('createObject');
                         },
@@ -664,23 +729,27 @@ class _HomeWidgetState extends State<HomeWidget> {
                             Icon(
                               Icons.add_circle_outline,
                               color: Colors.black,
-                              size: 32,
+                              size: 32.0,
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 4.0, 0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
                                   'cst35ncc' /* Add object */,
                                 ),
                                 textAlign: TextAlign.center,
-                                style: FlutterFlowTheme.of(context).bodyText2,
+                                style: FlutterFlowTheme.of(context).bodySmall,
                               ),
                             ),
                           ],
                         ),
                       ),
                       InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
                         onTap: () async {
                           context.pushNamed('Home');
                         },
@@ -692,17 +761,17 @@ class _HomeWidgetState extends State<HomeWidget> {
                             Icon(
                               Icons.cloud_queue,
                               color: Colors.black,
-                              size: 32,
+                              size: 32.0,
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 4.0, 0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
                                   'rhl8ddy7' /* Cloud */,
                                 ),
                                 textAlign: TextAlign.center,
-                                style: FlutterFlowTheme.of(context).bodyText2,
+                                style: FlutterFlowTheme.of(context).bodySmall,
                               ),
                             ),
                           ],

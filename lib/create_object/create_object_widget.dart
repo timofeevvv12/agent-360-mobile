@@ -1,12 +1,15 @@
-import '../backend/api_requests/api_calls.dart';
-import '../backend/firebase_storage/storage.dart';
-import '../flutter_flow/flutter_flow_icon_button.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
-import '../flutter_flow/upload_media.dart';
+import '/backend/api_requests/api_calls.dart';
+import '/backend/firebase_storage/storage.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/upload_data.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'create_object_model.dart';
+export 'create_object_model.dart';
 
 class CreateObjectWidget extends StatefulWidget {
   const CreateObjectWidget({Key? key}) : super(key: key);
@@ -16,55 +19,53 @@ class CreateObjectWidget extends StatefulWidget {
 }
 
 class _CreateObjectWidgetState extends State<CreateObjectWidget> {
-  bool isMediaUploading = false;
-  String uploadedFileUrl = '';
+  late CreateObjectModel _model;
 
-  TextEditingController? textController1;
-  TextEditingController? textController2;
-  TextEditingController? textController3;
-  ApiCallResponse? apiResult7rd;
-  ApiCallResponse? apiResultrv5;
-  ApiCallResponse? apiResultsz0;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
 
   @override
   void initState() {
     super.initState();
-    textController1 = TextEditingController();
-    textController2 = TextEditingController();
-    textController3 = TextEditingController();
+    _model = createModel(context, () => CreateObjectModel());
+
+    _model.textController1 ??= TextEditingController();
+    _model.textController2 ??= TextEditingController();
+    _model.textController3 ??= TextEditingController();
   }
 
   @override
   void dispose() {
-    textController1?.dispose();
-    textController2?.dispose();
-    textController3?.dispose();
+    _model.dispose();
+
+    _unfocusNode.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-      body: GestureDetector(
-        onTap: () => FocusScope.of(context).unfocus(),
-        child: Column(
+    context.watch<FFAppState>();
+
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+      child: Scaffold(
+        key: scaffoldKey,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        body: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
             Stack(
-              alignment: AlignmentDirectional(0, -0.9),
+              alignment: AlignmentDirectional(0.0, -0.9),
               children: [
                 Image.asset(
                   'assets/images/Create_360-3.png',
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height * 1,
+                  width: MediaQuery.of(context).size.width * 1.0,
+                  height: MediaQuery.of(context).size.height * 1.0,
                   fit: BoxFit.cover,
                 ),
                 Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height * 1,
+                  width: MediaQuery.of(context).size.width * 1.0,
+                  height: MediaQuery.of(context).size.height * 1.0,
                   decoration: BoxDecoration(
                     color: Color(0x61FFFFFF),
                   ),
@@ -73,26 +74,27 @@ class _CreateObjectWidgetState extends State<CreateObjectWidget> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            24.0, 0.0, 24.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Expanded(
                               child: Container(
-                                width: 100,
+                                width: 100.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
-                                  borderRadius: BorderRadius.circular(20),
+                                  borderRadius: BorderRadius.circular(20.0),
                                   border: Border.all(
                                     color: FlutterFlowTheme.of(context)
                                         .primaryText,
-                                    width: 1,
+                                    width: 1.0,
                                   ),
                                 ),
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      16, 24, 16, 24),
+                                      16.0, 24.0, 16.0, 24.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.start,
@@ -111,20 +113,21 @@ class _CreateObjectWidgetState extends State<CreateObjectWidget> {
                                               textAlign: TextAlign.center,
                                               style:
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyText1,
+                                                      .bodyMedium,
                                             ),
                                           ),
                                         ],
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 24, 0, 0),
+                                            0.0, 24.0, 0.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Expanded(
                                               child: TextFormField(
-                                                controller: textController1,
+                                                controller:
+                                                    _model.textController1,
                                                 obscureText: false,
                                                 decoration: InputDecoration(
                                                   hintText: FFLocalizations.of(
@@ -134,10 +137,10 @@ class _CreateObjectWidgetState extends State<CreateObjectWidget> {
                                                   ),
                                                   hintStyle: FlutterFlowTheme
                                                           .of(context)
-                                                      .bodyText2
+                                                      .bodySmall
                                                       .override(
                                                         fontFamily: 'Inter',
-                                                        fontSize: 16,
+                                                        fontSize: 16.0,
                                                         useGoogleFonts: false,
                                                       ),
                                                   enabledBorder:
@@ -147,24 +150,21 @@ class _CreateObjectWidgetState extends State<CreateObjectWidget> {
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .secondaryText,
-                                                      width: 1,
+                                                      width: 1.0,
                                                     ),
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            8),
+                                                            8.0),
                                                   ),
                                                   focusedBorder:
                                                       OutlineInputBorder(
                                                     borderSide: BorderSide(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryText,
-                                                      width: 1,
+                                                      color: Color(0x00000000),
+                                                      width: 1.0,
                                                     ),
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            8),
+                                                            8.0),
                                                   ),
                                                   errorBorder:
                                                       OutlineInputBorder(
@@ -173,11 +173,11 @@ class _CreateObjectWidgetState extends State<CreateObjectWidget> {
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .alternate,
-                                                      width: 1,
+                                                      width: 1.0,
                                                     ),
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            8),
+                                                            8.0),
                                                   ),
                                                   focusedErrorBorder:
                                                       OutlineInputBorder(
@@ -186,21 +186,24 @@ class _CreateObjectWidgetState extends State<CreateObjectWidget> {
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .alternate,
-                                                      width: 1,
+                                                      width: 1.0,
                                                     ),
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            8),
+                                                            8.0),
                                                   ),
                                                 ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
-                                                        .bodyText1
+                                                        .bodyMedium
                                                         .override(
                                                           fontFamily: 'Inter',
-                                                          fontSize: 16,
+                                                          fontSize: 16.0,
                                                           useGoogleFonts: false,
                                                         ),
+                                                validator: _model
+                                                    .textController1Validator
+                                                    .asValidator(context),
                                               ),
                                             ),
                                           ],
@@ -208,13 +211,14 @@ class _CreateObjectWidgetState extends State<CreateObjectWidget> {
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 16, 0, 0),
+                                            0.0, 16.0, 0.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Expanded(
                                               child: TextFormField(
-                                                controller: textController2,
+                                                controller:
+                                                    _model.textController2,
                                                 obscureText: false,
                                                 decoration: InputDecoration(
                                                   hintText: FFLocalizations.of(
@@ -224,10 +228,10 @@ class _CreateObjectWidgetState extends State<CreateObjectWidget> {
                                                   ),
                                                   hintStyle: FlutterFlowTheme
                                                           .of(context)
-                                                      .bodyText2
+                                                      .bodySmall
                                                       .override(
                                                         fontFamily: 'Inter',
-                                                        fontSize: 16,
+                                                        fontSize: 16.0,
                                                         useGoogleFonts: false,
                                                       ),
                                                   enabledBorder:
@@ -237,24 +241,21 @@ class _CreateObjectWidgetState extends State<CreateObjectWidget> {
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .secondaryText,
-                                                      width: 1,
+                                                      width: 1.0,
                                                     ),
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            8),
+                                                            8.0),
                                                   ),
                                                   focusedBorder:
                                                       OutlineInputBorder(
                                                     borderSide: BorderSide(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryText,
-                                                      width: 1,
+                                                      color: Color(0x00000000),
+                                                      width: 1.0,
                                                     ),
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            8),
+                                                            8.0),
                                                   ),
                                                   errorBorder:
                                                       OutlineInputBorder(
@@ -263,11 +264,11 @@ class _CreateObjectWidgetState extends State<CreateObjectWidget> {
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .alternate,
-                                                      width: 1,
+                                                      width: 1.0,
                                                     ),
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            8),
+                                                            8.0),
                                                   ),
                                                   focusedErrorBorder:
                                                       OutlineInputBorder(
@@ -276,21 +277,24 @@ class _CreateObjectWidgetState extends State<CreateObjectWidget> {
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .alternate,
-                                                      width: 1,
+                                                      width: 1.0,
                                                     ),
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            8),
+                                                            8.0),
                                                   ),
                                                 ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
-                                                        .bodyText1
+                                                        .bodyMedium
                                                         .override(
                                                           fontFamily: 'Inter',
-                                                          fontSize: 16,
+                                                          fontSize: 16.0,
                                                           useGoogleFonts: false,
                                                         ),
+                                                validator: _model
+                                                    .textController2Validator
+                                                    .asValidator(context),
                                               ),
                                             ),
                                           ],
@@ -298,13 +302,14 @@ class _CreateObjectWidgetState extends State<CreateObjectWidget> {
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 16, 0, 0),
+                                            0.0, 16.0, 0.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Expanded(
                                               child: TextFormField(
-                                                controller: textController3,
+                                                controller:
+                                                    _model.textController3,
                                                 obscureText: false,
                                                 decoration: InputDecoration(
                                                   hintText: FFLocalizations.of(
@@ -314,10 +319,10 @@ class _CreateObjectWidgetState extends State<CreateObjectWidget> {
                                                   ),
                                                   hintStyle: FlutterFlowTheme
                                                           .of(context)
-                                                      .bodyText2
+                                                      .bodySmall
                                                       .override(
                                                         fontFamily: 'Inter',
-                                                        fontSize: 16,
+                                                        fontSize: 16.0,
                                                         useGoogleFonts: false,
                                                       ),
                                                   enabledBorder:
@@ -327,24 +332,21 @@ class _CreateObjectWidgetState extends State<CreateObjectWidget> {
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .secondaryText,
-                                                      width: 1,
+                                                      width: 1.0,
                                                     ),
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            8),
+                                                            8.0),
                                                   ),
                                                   focusedBorder:
                                                       OutlineInputBorder(
                                                     borderSide: BorderSide(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryText,
-                                                      width: 1,
+                                                      color: Color(0x00000000),
+                                                      width: 1.0,
                                                     ),
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            8),
+                                                            8.0),
                                                   ),
                                                   errorBorder:
                                                       OutlineInputBorder(
@@ -353,11 +355,11 @@ class _CreateObjectWidgetState extends State<CreateObjectWidget> {
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .alternate,
-                                                      width: 1,
+                                                      width: 1.0,
                                                     ),
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            8),
+                                                            8.0),
                                                   ),
                                                   focusedErrorBorder:
                                                       OutlineInputBorder(
@@ -366,21 +368,24 @@ class _CreateObjectWidgetState extends State<CreateObjectWidget> {
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .alternate,
-                                                      width: 1,
+                                                      width: 1.0,
                                                     ),
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            8),
+                                                            8.0),
                                                   ),
                                                 ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
-                                                        .bodyText1
+                                                        .bodyMedium
                                                         .override(
                                                           fontFamily: 'Inter',
-                                                          fontSize: 16,
+                                                          fontSize: 16.0,
                                                           useGoogleFonts: false,
                                                         ),
+                                                validator: _model
+                                                    .textController3Validator
+                                                    .asValidator(context),
                                               ),
                                             ),
                                           ],
@@ -388,7 +393,7 @@ class _CreateObjectWidgetState extends State<CreateObjectWidget> {
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 16, 0, 0),
+                                            0.0, 16.0, 0.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -407,12 +412,26 @@ class _CreateObjectWidgetState extends State<CreateObjectWidget> {
                                                     ),
                                                     options: FFButtonOptions(
                                                       width: double.infinity,
-                                                      height: 60,
+                                                      height: 60.0,
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      iconPadding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
                                                       color: Colors.white,
                                                       textStyle:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .subtitle2
+                                                              .titleSmall
                                                               .override(
                                                                 fontFamily:
                                                                     'Inter',
@@ -425,19 +444,20 @@ class _CreateObjectWidgetState extends State<CreateObjectWidget> {
                                                                 useGoogleFonts:
                                                                     false,
                                                               ),
+                                                      elevation: 2.0,
                                                       borderSide: BorderSide(
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .secondaryText,
-                                                        width: 1,
+                                                        width: 1.0,
                                                       ),
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              8),
+                                                              8.0),
                                                     ),
                                                   ),
-                                                  if (!isMediaUploading)
+                                                  if (!_model.isDataUploading)
                                                     FFButtonWidget(
                                                       onPressed: () async {
                                                         final selectedMedia =
@@ -453,9 +473,11 @@ class _CreateObjectWidgetState extends State<CreateObjectWidget> {
                                                                 validateFileFormat(
                                                                     m.storagePath,
                                                                     context))) {
-                                                          setState(() =>
-                                                              isMediaUploading =
-                                                                  true);
+                                                          setState(() => _model
+                                                                  .isDataUploading =
+                                                              true);
+                                                          var selectedUploadedFiles =
+                                                              <FFUploadedFile>[];
                                                           var downloadUrls =
                                                               <String>[];
                                                           try {
@@ -468,6 +490,27 @@ class _CreateObjectWidgetState extends State<CreateObjectWidget> {
                                                               ),
                                                               showLoading: true,
                                                             );
+                                                            selectedUploadedFiles =
+                                                                selectedMedia
+                                                                    .map((m) =>
+                                                                        FFUploadedFile(
+                                                                          name: m
+                                                                              .storagePath
+                                                                              .split('/')
+                                                                              .last,
+                                                                          bytes:
+                                                                              m.bytes,
+                                                                          height: m
+                                                                              .dimensions
+                                                                              ?.height,
+                                                                          width: m
+                                                                              .dimensions
+                                                                              ?.width,
+                                                                          blurHash:
+                                                                              m.blurHash,
+                                                                        ))
+                                                                    .toList();
+
                                                             downloadUrls =
                                                                 (await Future
                                                                         .wait(
@@ -488,17 +531,25 @@ class _CreateObjectWidgetState extends State<CreateObjectWidget> {
                                                             ScaffoldMessenger
                                                                     .of(context)
                                                                 .hideCurrentSnackBar();
-                                                            isMediaUploading =
+                                                            _model.isDataUploading =
                                                                 false;
                                                           }
-                                                          if (downloadUrls
-                                                                  .length ==
-                                                              selectedMedia
-                                                                  .length) {
-                                                            setState(() =>
-                                                                uploadedFileUrl =
-                                                                    downloadUrls
-                                                                        .first);
+                                                          if (selectedUploadedFiles
+                                                                      .length ==
+                                                                  selectedMedia
+                                                                      .length &&
+                                                              downloadUrls
+                                                                      .length ==
+                                                                  selectedMedia
+                                                                      .length) {
+                                                            setState(() {
+                                                              _model.uploadedLocalFile =
+                                                                  selectedUploadedFiles
+                                                                      .first;
+                                                              _model.uploadedFileUrl =
+                                                                  downloadUrls
+                                                                      .first;
+                                                            });
                                                             showUploadMessage(
                                                                 context,
                                                                 FFLocalizations.of(
@@ -526,12 +577,26 @@ class _CreateObjectWidgetState extends State<CreateObjectWidget> {
                                                       ),
                                                       options: FFButtonOptions(
                                                         width: double.infinity,
-                                                        height: 60,
+                                                        height: 60.0,
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        iconPadding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
                                                         color: Colors.white,
                                                         textStyle:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .subtitle2
+                                                                .titleSmall
                                                                 .override(
                                                                   fontFamily:
                                                                       'Inter',
@@ -544,15 +609,16 @@ class _CreateObjectWidgetState extends State<CreateObjectWidget> {
                                                                   useGoogleFonts:
                                                                       false,
                                                                 ),
+                                                        elevation: 2.0,
                                                         borderSide: BorderSide(
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondaryText,
-                                                          width: 1,
+                                                          width: 1.0,
                                                         ),
                                                         borderRadius:
                                                             BorderRadius
-                                                                .circular(8),
+                                                                .circular(8.0),
                                                       ),
                                                     ),
                                                 ],
@@ -563,7 +629,7 @@ class _CreateObjectWidgetState extends State<CreateObjectWidget> {
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 16, 0, 0),
+                                            0.0, 16.0, 0.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
@@ -571,48 +637,50 @@ class _CreateObjectWidgetState extends State<CreateObjectWidget> {
                                           children: [
                                             FFButtonWidget(
                                               onPressed: () async {
-                                                if (uploadedFileUrl != null &&
-                                                    uploadedFileUrl != '') {
-                                                  apiResultsz0 =
+                                                if (_model.uploadedFileUrl !=
+                                                        null &&
+                                                    _model.uploadedFileUrl !=
+                                                        '') {
+                                                  _model.apiResultsz0 =
                                                       await CreateObjectCall
                                                           .call(
                                                     objectCreator:
                                                         FFAppState().name,
-                                                    objectInfo:
-                                                        textController2!.text,
+                                                    objectInfo: _model
+                                                        .textController2.text,
                                                     objectCreatorId:
                                                         FFAppState().id,
-                                                    objectName:
-                                                        textController1!.text,
+                                                    objectName: _model
+                                                        .textController1.text,
                                                     objectCover:
-                                                        uploadedFileUrl,
+                                                        _model.uploadedFileUrl,
                                                   );
-                                                  if ((apiResultsz0
+                                                  if ((_model.apiResultsz0
                                                           ?.succeeded ??
                                                       true)) {
-                                                    apiResultrv5 =
+                                                    _model.apiResultrv5 =
                                                         await CreateSceneCall
                                                             .call(
-                                                      sceneImage:
-                                                          uploadedFileUrl,
-                                                      sceneName:
-                                                          textController3!.text,
+                                                      sceneImage: _model
+                                                          .uploadedFileUrl,
+                                                      sceneName: _model
+                                                          .textController3.text,
                                                       sceneObject: getJsonField(
-                                                        (apiResultsz0
+                                                        (_model.apiResultsz0
                                                                 ?.jsonBody ??
                                                             ''),
                                                         r'''$.id''',
                                                       ).toString(),
                                                       sceneOrder: 1,
                                                     );
-                                                    if ((apiResultrv5
+                                                    if ((_model.apiResultrv5
                                                             ?.succeeded ??
                                                         true)) {
-                                                      apiResult7rd =
+                                                      _model.apiResult7rd =
                                                           await AddObjectByCompanyCall
                                                               .call(
                                                         objectId: getJsonField(
-                                                          (apiResultsz0
+                                                          (_model.apiResultsz0
                                                                   ?.jsonBody ??
                                                               ''),
                                                           r'''$.id''',
@@ -622,13 +690,13 @@ class _CreateObjectWidgetState extends State<CreateObjectWidget> {
                                                       await AddSceneToObjectCall
                                                           .call(
                                                         objectId: getJsonField(
-                                                          (apiResultsz0
+                                                          (_model.apiResultsz0
                                                                   ?.jsonBody ??
                                                               ''),
                                                           r'''$.id''',
                                                         ).toString(),
                                                         sceneId: getJsonField(
-                                                          (apiResultrv5
+                                                          (_model.apiResultrv5
                                                                   ?.jsonBody ??
                                                               ''),
                                                           r'''$.id''',
@@ -644,7 +712,7 @@ class _CreateObjectWidgetState extends State<CreateObjectWidget> {
                                                           'objectId':
                                                               serializeParam(
                                                             getJsonField(
-                                                              (apiResultsz0
+                                                              (_model.apiResultsz0
                                                                       ?.jsonBody ??
                                                                   ''),
                                                               r'''$.id''',
@@ -653,7 +721,8 @@ class _CreateObjectWidgetState extends State<CreateObjectWidget> {
                                                           ),
                                                           'objectName':
                                                               serializeParam(
-                                                            textController1!
+                                                            _model
+                                                                .textController1
                                                                 .text,
                                                             ParamType.String,
                                                           ),
@@ -692,14 +761,21 @@ class _CreateObjectWidgetState extends State<CreateObjectWidget> {
                                                 'pwodgunn' /* Add object */,
                                               ),
                                               options: FFButtonOptions(
-                                                width: 180,
-                                                height: 45,
+                                                width: 180.0,
+                                                height: 45.0,
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 0.0),
+                                                iconPadding:
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .primaryColor,
+                                                        .primary,
                                                 textStyle:
                                                     FlutterFlowTheme.of(context)
-                                                        .subtitle2
+                                                        .titleSmall
                                                         .override(
                                                           fontFamily: 'Inter',
                                                           color: FlutterFlowTheme
@@ -709,12 +785,13 @@ class _CreateObjectWidgetState extends State<CreateObjectWidget> {
                                                               FontWeight.w500,
                                                           useGoogleFonts: false,
                                                         ),
+                                                elevation: 2.0,
                                                 borderSide: BorderSide(
                                                   color: Colors.transparent,
-                                                  width: 1,
+                                                  width: 1.0,
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(8),
+                                                    BorderRadius.circular(8.0),
                                               ),
                                             ),
                                           ],
@@ -732,19 +809,19 @@ class _CreateObjectWidgetState extends State<CreateObjectWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       FlutterFlowIconButton(
-                        borderRadius: 8,
-                        borderWidth: 0,
-                        buttonSize: 60,
+                        borderRadius: 8.0,
+                        borderWidth: 0.0,
+                        buttonSize: 60.0,
                         fillColor: Color(0x63FFFFFF),
                         icon: Icon(
                           Icons.arrow_back,
                           color: Color(0xD91E1E1E),
-                          size: 30,
+                          size: 30.0,
                         ),
                         onPressed: () async {
                           context.pop();
